@@ -1,0 +1,36 @@
+<div class="col-lg-12 mt-3">
+
+<h1>{{page_title}}</h1>
+<hr>
+
+   
+<ul class="list-group">   
+  
+    
+
+    <li class="list-group-item list-group-item-secondary" *ngFor="let user of users">                   
+        <div class=" container">
+          
+            <div class="row" style="text-align: right;" >
+              <span style="margin-right: 10px;"><a  class="btn btn-success" style="vertical-align: middle; line-height: 2.0;" [routerLink]="[ '/perfil', user._id  ]" style="padding-bottom: 3px;">Ver Perfil</a></span>
+
+            <img src="{{url+'avatar/'+user.image}}" style="vertical-align: middle;  width: 40px; height: 40px;  border-radius: 50%; margin-right: 10px;" *ngIf="user.image">        
+    
+            <img src="http://www.prsindia.org/sites/default/files/default_images/icon-user-default_0.png" style="vertical-align: middle;  width: 40px; height: 40px;  border-radius: 50%; margin-right: 10px;" *ngIf="!user.image">
+
+    <br><h2 style="vertical-align: middle; "> <a [routerLink]="[ '/perfil', user._id  ]" style="vertical-align: middle; "> {{user.name+' '+user.surname}}</a></h2>  
+ 
+</div>
+   
+</div>
+    </li>
+    
+  </ul>
+
+
+
+ 
+
+  <div class="clearfix"></div>
+  
+  

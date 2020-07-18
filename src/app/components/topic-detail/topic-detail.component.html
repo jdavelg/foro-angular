@@ -1,0 +1,60 @@
+<div class="col-lg-12 mt-3" *ngIf="topic">
+   
+<div class="topic-data col-lg-9 float-left">
+<h1> {{topic.title}}</h1>
+<p>{{topic.user.name + ' '+topic.user.surname}}</p>
+<span *ngIf="topic.lang" class="badge badge-warning mr-2">{{topic.lang  }}</span> 
+<span class="badge badge-primary">{{topic.user.name + ' '+ topic.user.surname}}</span> &nbsp;
+<span class="badge badge-primary ml-2">{{topic.date | amLocale:'es'| amTimeAgo }}</span> 
+
+<hr>
+<p id="topic-content" class="mt-3">{{topic.content}}</p>
+
+<p id="topic-code" class="mt-2" *ngIf="topic.code && topic.lang">
+    <ngx-highlight-js lang="{{topic.lang}}"
+  code="{{topic.code}}">
+  
+</ngx-highlight-js>
+</p>
+
+<div class="clearfix"></div>
+<div id="comment-box" class="mt-3 col-lg-9">
+
+    <h3>Comentarios</h3>
+    <hr>
+    <div class="alert alert-success" role="alert" *ngIf="status=='success'">
+        Comentario publicado con exito!
+      </div>
+      <div class="alert alert-warning" role="alert" *ngIf="status=='error'">
+       Error al comentar
+      </div>
+    <form *ngIf="identity" #formComment="ngForm" (ngSubmit)="onSubmit(formComment)">
+
+        <div class="form-group">
+            <label for="content">Escribe un Comentario</label>
+            <textarea type="text" class="form-control" name="content" #content="ngModel" [(ngModel)]="comment.content" ></textarea>
+            <small *ngIf="!content.valid && content.touched" class="invalid-feedback d-block">El contenido no es Valido</small>
+            </div>
+            <input type="submit" class="btn btn-sm btn-outline-primary" value="Comentar" [disabled]="formComment.invalid">
+
+    </form>
+    <div class="alert alert-success" role="alert" *ngIf="deleting==true">
+        Comentario eliminado con exito!
+      </div>
+</div>
+<div class="media mb-4 mt-3 mb-1" *ngFor="let comment of topic.comments">
+    <img class="d-flex mr-3 rounded-circle" src="{{url+'avatar/'+comment.user.image}}" style="vertical-align: middle; width: 45px; height: 40px; border-radius: 50%;">
+    <div class="media-body">
+      <h5 class="mt-0">{{comment.user.name+' '+comment.user.surname }}</h5>
+      {{comment.content}}
+      
+    </div>
+
+   <span class="badge badge-info " style="margin-right: 35px;">{{comment.date | amLocale: 'es'| amTimeAgo}}</span>
+   <p style="vertical-align: bottom;"><span><a (click)="deleteComment(comment._id)" class="btn btn-sm btn-outline-danger"   *ngIf="identity._id== comment.user._id">Eliminar</a></span></p> 
+  
+  </div>
+
+</div>
+
+</div>

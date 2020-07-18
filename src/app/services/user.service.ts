@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, DoCheck } from '@angular/core';
 import { HttpClientModule, HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
@@ -7,7 +7,7 @@ import { global } from "./global";
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class UserService implements DoCheck {
 public url;
 public identity:any;
 public token:any
@@ -19,6 +19,11 @@ public token:any
     this.url= global.url
    }
 
+
+   ngDoCheck(): void {
+    this.identity;
+      
+    }
 
 
   prueba(){

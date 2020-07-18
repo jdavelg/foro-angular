@@ -48,7 +48,7 @@ this.afuConfig={
   hideProgressBar:false,
   hideResetBtn:true,
   hideSelectBtn:false,
-  attachPinText:'sube tu foto',
+  attachPinText:'Sube tu foto',
   attachPinBtn:'Upload Failed'
 }
   }

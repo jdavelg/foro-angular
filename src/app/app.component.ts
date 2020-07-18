@@ -32,9 +32,14 @@ this.url= global.url
 ngOnInit(): void {
 console.log(this.identity);
 console.log(this.token);
+
   
 }
-ngDoCheck(): void {
+ngOnChanges():any{
+  this.identity
+}
+
+ngDoCheck():any {
 this.identity;
   
 }
